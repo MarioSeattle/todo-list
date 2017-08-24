@@ -7,11 +7,8 @@ class App extends Component {
         super(props);
 
         this.state = {
-            todos: [
-                'Learn React',
-                'Do Laundry'
-            ]
-        };
+            todos: []
+        }
     }
 
     render() {
@@ -24,6 +21,7 @@ class App extends Component {
                 <ul>
                     {this.state.todos.map((todo, index) => <li key={index}>{todo}</li>)}
                 </ul>
+                <input type="text" placeholder="New TODO" /><button>Add TODO</button>
             </div>
         );
     }
