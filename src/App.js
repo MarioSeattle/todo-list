@@ -7,8 +7,20 @@ class App extends Component {
         super(props);
 
         this.state = {
-            todos: []
-        }
+            todos: [],
+            todoToAdd: ""
+        };
+
+        // This binding is necessary to make `this` work in the callback
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(event) {
+        const nextTodoToAdd = event.target.value;
+
+        this.setState({
+            todoToAdd: nextTodoToAdd
+        });
     }
 
     render() {
@@ -21,7 +33,13 @@ class App extends Component {
                 <ul>
                     {this.state.todos.map((todo, index) => <li key={index}>{todo}</li>)}
                 </ul>
-                <input type="text" placeholder="New TODO" /><button>Add TODO</button>
+                <input
+                    type="text"
+                    placeholder="New TODO"
+                    value={this.state.todoToAdd}
+                    onChange={this.handleChange}
+                />
+                <button>Add TODO</button>
             </div>
         );
     }
