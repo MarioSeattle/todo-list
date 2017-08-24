@@ -13,12 +13,23 @@ class App extends Component {
 
         // This binding is necessary to make `this` work in the callback
         this.handleChange = this.handleChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     handleChange(event) {
         const nextTodoToAdd = event.target.value;
 
         this.setState({
+            todoToAdd: nextTodoToAdd
+        });
+    }
+
+    handleClick(event) {
+        const nextTodos = this.state.todos.concat(this.state.todoToAdd);
+        const nextTodoToAdd = '';
+
+        this.setState({
+            todos: nextTodos,
             todoToAdd: nextTodoToAdd
         });
     }
@@ -39,7 +50,7 @@ class App extends Component {
                     value={this.state.todoToAdd}
                     onChange={this.handleChange}
                 />
-                <button>Add TODO</button>
+                <button onClick={this.handleClick}>Add TODO</button>
             </div>
         );
     }
